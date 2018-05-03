@@ -57,6 +57,160 @@ public class SourceimagesApi {
     }
 
     /**
+     * Build call for copySourceImage
+     * @param destination The destination organization (required)
+     * @param organization  (required)
+     * @param hash  (required)
+     * @param overwrite If set to &#39;F&#39;, existing images won&#39;t be overwritten. (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * 
+     * @see <a href="https://rokka.io/documentation/references/source-images.html#copy-a-source-image-to-another-organization">Copy a single source image to another org. Documentation</a>
+     */
+    public com.squareup.okhttp.Call copySourceImageCall(String destination, String organization, String hash, String overwrite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/sourceimages/{organization}/{hash}/copy"
+            .replaceAll("\\{" + "organization" + "\\}", apiClient.escapeString(organization.toString()))
+            .replaceAll("\\{" + "hash" + "\\}", apiClient.escapeString(hash.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (destination != null)
+        localVarHeaderParams.put("Destination", apiClient.parameterToString(destination));
+        if (overwrite != null)
+        localVarHeaderParams.put("Overwrite", apiClient.parameterToString(overwrite));
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call copySourceImageValidateBeforeCall(String destination, String organization, String hash, String overwrite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'destination' is set
+        if (destination == null) {
+            throw new ApiException("Missing the required parameter 'destination' when calling copySourceImage(Async)");
+        }
+        
+        // verify the required parameter 'organization' is set
+        if (organization == null) {
+            throw new ApiException("Missing the required parameter 'organization' when calling copySourceImage(Async)");
+        }
+        
+        // verify the required parameter 'hash' is set
+        if (hash == null) {
+            throw new ApiException("Missing the required parameter 'hash' when calling copySourceImage(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = copySourceImageCall(destination, organization, hash, overwrite, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Copy a single source image to another org.
+     * The metadata is copied as well. After copying, changes to either image metadata are not reflected in the other image metadata.  This is a proxy method for COPY on /sourceimages/{organization}/{hash}. It allows to copy images with a POST request, to work around restrictive firewalls and allows to produce a swagger specification for this operation.
+     * @param destination The destination organization (required)
+     * @param organization  (required)
+     * @param hash  (required)
+     * @param overwrite If set to &#39;F&#39;, existing images won&#39;t be overwritten. (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * 
+     * @see <a href="https://rokka.io/documentation/references/source-images.html#copy-a-source-image-to-another-organization">Copy a single source image to another org. Documentation</a>
+     */
+    public void copySourceImage(String destination, String organization, String hash, String overwrite) throws ApiException {
+        copySourceImageWithHttpInfo(destination, organization, hash, overwrite);
+    }
+
+    /**
+     * Copy a single source image to another org.
+     * The metadata is copied as well. After copying, changes to either image metadata are not reflected in the other image metadata.  This is a proxy method for COPY on /sourceimages/{organization}/{hash}. It allows to copy images with a POST request, to work around restrictive firewalls and allows to produce a swagger specification for this operation.
+     * @param destination The destination organization (required)
+     * @param organization  (required)
+     * @param hash  (required)
+     * @param overwrite If set to &#39;F&#39;, existing images won&#39;t be overwritten. (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * 
+     * @see <a href="https://rokka.io/documentation/references/source-images.html#copy-a-source-image-to-another-organization">Copy a single source image to another org. Documentation</a>
+     */
+    public ApiResponse<Void> copySourceImageWithHttpInfo(String destination, String organization, String hash, String overwrite) throws ApiException {
+        com.squareup.okhttp.Call call = copySourceImageValidateBeforeCall(destination, organization, hash, overwrite, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Copy a single source image to another org. (asynchronously)
+     * The metadata is copied as well. After copying, changes to either image metadata are not reflected in the other image metadata.  This is a proxy method for COPY on /sourceimages/{organization}/{hash}. It allows to copy images with a POST request, to work around restrictive firewalls and allows to produce a swagger specification for this operation.
+     * @param destination The destination organization (required)
+     * @param organization  (required)
+     * @param hash  (required)
+     * @param overwrite If set to &#39;F&#39;, existing images won&#39;t be overwritten. (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * 
+     * @see <a href="https://rokka.io/documentation/references/source-images.html#copy-a-source-image-to-another-organization">Copy a single source image to another org. Documentation</a>
+     */
+    public com.squareup.okhttp.Call copySourceImageAsync(String destination, String organization, String hash, String overwrite, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = copySourceImageValidateBeforeCall(destination, organization, hash, overwrite, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
      * Build call for createSourceImage
      * @param filedata The binary images (required)
      * @param organization  (required)
@@ -2411,160 +2565,6 @@ public class SourceimagesApi {
         com.squareup.okhttp.Call call = restoreSourceImageValidateBeforeCall(organization, hash, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<SourceImage>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for sourceimagesOrganizationHashCopyPost
-     * @param destination The destination organization (required)
-     * @param organization  (required)
-     * @param hash  (required)
-     * @param overwrite If set to &#39;F&#39;, existing images won&#39;t be overwritten. (optional)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * 
-     * @see <a href="https://rokka.io/documentation/references/source-images.html#copy-a-source-image-to-another-organization">Copy a single source image to another org. Documentation</a>
-     */
-    public com.squareup.okhttp.Call sourceimagesOrganizationHashCopyPostCall(String destination, String organization, String hash, String overwrite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/sourceimages/{organization}/{hash}/copy"
-            .replaceAll("\\{" + "organization" + "\\}", apiClient.escapeString(organization.toString()))
-            .replaceAll("\\{" + "hash" + "\\}", apiClient.escapeString(hash.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (destination != null)
-        localVarHeaderParams.put("Destination", apiClient.parameterToString(destination));
-        if (overwrite != null)
-        localVarHeaderParams.put("Overwrite", apiClient.parameterToString(overwrite));
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call sourceimagesOrganizationHashCopyPostValidateBeforeCall(String destination, String organization, String hash, String overwrite, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'destination' is set
-        if (destination == null) {
-            throw new ApiException("Missing the required parameter 'destination' when calling sourceimagesOrganizationHashCopyPost(Async)");
-        }
-        
-        // verify the required parameter 'organization' is set
-        if (organization == null) {
-            throw new ApiException("Missing the required parameter 'organization' when calling sourceimagesOrganizationHashCopyPost(Async)");
-        }
-        
-        // verify the required parameter 'hash' is set
-        if (hash == null) {
-            throw new ApiException("Missing the required parameter 'hash' when calling sourceimagesOrganizationHashCopyPost(Async)");
-        }
-        
-
-        com.squareup.okhttp.Call call = sourceimagesOrganizationHashCopyPostCall(destination, organization, hash, overwrite, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * Copy a single source image to another org.
-     * The metadata is copied as well. After copying, changes to either image metadata are not reflected in the other image metadata.  This is a proxy method for COPY on /sourceimages/{organization}/{hash}. It allows to copy images with a POST request, to work around restrictive firewalls and allows to produce a swagger specification for this operation.
-     * @param destination The destination organization (required)
-     * @param organization  (required)
-     * @param hash  (required)
-     * @param overwrite If set to &#39;F&#39;, existing images won&#39;t be overwritten. (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * 
-     * @see <a href="https://rokka.io/documentation/references/source-images.html#copy-a-source-image-to-another-organization">Copy a single source image to another org. Documentation</a>
-     */
-    public void sourceimagesOrganizationHashCopyPost(String destination, String organization, String hash, String overwrite) throws ApiException {
-        sourceimagesOrganizationHashCopyPostWithHttpInfo(destination, organization, hash, overwrite);
-    }
-
-    /**
-     * Copy a single source image to another org.
-     * The metadata is copied as well. After copying, changes to either image metadata are not reflected in the other image metadata.  This is a proxy method for COPY on /sourceimages/{organization}/{hash}. It allows to copy images with a POST request, to work around restrictive firewalls and allows to produce a swagger specification for this operation.
-     * @param destination The destination organization (required)
-     * @param organization  (required)
-     * @param hash  (required)
-     * @param overwrite If set to &#39;F&#39;, existing images won&#39;t be overwritten. (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * 
-     * @see <a href="https://rokka.io/documentation/references/source-images.html#copy-a-source-image-to-another-organization">Copy a single source image to another org. Documentation</a>
-     */
-    public ApiResponse<Void> sourceimagesOrganizationHashCopyPostWithHttpInfo(String destination, String organization, String hash, String overwrite) throws ApiException {
-        com.squareup.okhttp.Call call = sourceimagesOrganizationHashCopyPostValidateBeforeCall(destination, organization, hash, overwrite, null, null);
-        return apiClient.execute(call);
-    }
-
-    /**
-     * Copy a single source image to another org. (asynchronously)
-     * The metadata is copied as well. After copying, changes to either image metadata are not reflected in the other image metadata.  This is a proxy method for COPY on /sourceimages/{organization}/{hash}. It allows to copy images with a POST request, to work around restrictive firewalls and allows to produce a swagger specification for this operation.
-     * @param destination The destination organization (required)
-     * @param organization  (required)
-     * @param hash  (required)
-     * @param overwrite If set to &#39;F&#39;, existing images won&#39;t be overwritten. (optional)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * 
-     * @see <a href="https://rokka.io/documentation/references/source-images.html#copy-a-source-image-to-another-organization">Copy a single source image to another org. Documentation</a>
-     */
-    public com.squareup.okhttp.Call sourceimagesOrganizationHashCopyPostAsync(String destination, String organization, String hash, String overwrite, final ApiCallback<Void> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = sourceimagesOrganizationHashCopyPostValidateBeforeCall(destination, organization, hash, overwrite, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
         return call;
     }
 }

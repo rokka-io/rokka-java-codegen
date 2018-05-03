@@ -4,6 +4,7 @@ All URIs are relative to *https://api.rokka.io/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**copySourceImage**](SourceimagesApi.md#copySourceImage) | **POST** /sourceimages/{organization}/{hash}/copy | Copy a single source image to another org.
 [**createSourceImage**](SourceimagesApi.md#createSourceImage) | **POST** /sourceimages/{organization} | Upload new source images.
 [**createSourceImageMetaDynamicWithName**](SourceimagesApi.md#createSourceImageMetaDynamicWithName) | **PUT** /sourceimages/{organization}/{hash}/meta/dynamic/{metaName} | Adds or updates a specific dynamic meta data for an image.
 [**createSourceImageMetaUser**](SourceimagesApi.md#createSourceImageMetaUser) | **PUT** /sourceimages/{organization}/{hash}/meta/user | Replace the image meta data with new information.
@@ -20,8 +21,67 @@ Method | HTTP request | Description
 [**listSourceImagesByBinaryHash**](SourceimagesApi.md#listSourceImagesByBinaryHash) | **GET** /sourceimages/{organization}/binaryhash/{binaryHash} | Get all images in this organization that match a binaryhash.
 [**patchSourceImageMetaUser**](SourceimagesApi.md#patchSourceImageMetaUser) | **PATCH** /sourceimages/{organization}/{hash}/meta/user | Update the specified meta data fields for an image.
 [**restoreSourceImage**](SourceimagesApi.md#restoreSourceImage) | **POST** /sourceimages/{organization}/{hash}/restore | Restore source image including previously set metadata.
-[**sourceimagesOrganizationHashCopyPost**](SourceimagesApi.md#sourceimagesOrganizationHashCopyPost) | **POST** /sourceimages/{organization}/{hash}/copy | Copy a single source image to another org.
 
+
+<a name="copySourceImage"></a>
+# **copySourceImage**
+> copySourceImage(destination, organization, hash, overwrite)
+
+Copy a single source image to another org.
+
+The metadata is copied as well. After copying, changes to either image metadata are not reflected in the other image metadata.  This is a proxy method for COPY on /sourceimages/{organization}/{hash}. It allows to copy images with a POST request, to work around restrictive firewalls and allows to produce a swagger specification for this operation.
+
+### Example
+```java
+// Import classes:
+//import io.rokka.client.codegen.ApiClient;
+//import io.rokka.client.codegen.ApiException;
+//import io.rokka.client.codegen.Configuration;
+//import io.rokka.client.codegen.auth.*;
+//import io.rokka.client.codegen.api.SourceimagesApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: ApiKeyAuth
+ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+ApiKeyAuth.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//ApiKeyAuth.setApiKeyPrefix("Token");
+
+SourceimagesApi apiInstance = new SourceimagesApi();
+String destination = "destination_example"; // String | The destination organization
+String organization = "organization_example"; // String | 
+String hash = "hash_example"; // String | 
+String overwrite = "overwrite_example"; // String | If set to 'F', existing images won't be overwritten.
+try {
+    apiInstance.copySourceImage(destination, organization, hash, overwrite);
+} catch (ApiException e) {
+    System.err.println("Exception when calling SourceimagesApi#copySourceImage");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **destination** | **String**| The destination organization |
+ **organization** | **String**|  |
+ **hash** | **String**|  |
+ **overwrite** | **String**| If set to &#39;F&#39;, existing images won&#39;t be overwritten. | [optional] [enum: ,  F]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
 
 <a name="createSourceImage"></a>
 # **createSourceImage**
@@ -941,66 +1001,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SourceImage**](SourceImage.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-<a name="sourceimagesOrganizationHashCopyPost"></a>
-# **sourceimagesOrganizationHashCopyPost**
-> sourceimagesOrganizationHashCopyPost(destination, organization, hash, overwrite)
-
-Copy a single source image to another org.
-
-The metadata is copied as well. After copying, changes to either image metadata are not reflected in the other image metadata.  This is a proxy method for COPY on /sourceimages/{organization}/{hash}. It allows to copy images with a POST request, to work around restrictive firewalls and allows to produce a swagger specification for this operation.
-
-### Example
-```java
-// Import classes:
-//import io.rokka.client.codegen.ApiClient;
-//import io.rokka.client.codegen.ApiException;
-//import io.rokka.client.codegen.Configuration;
-//import io.rokka.client.codegen.auth.*;
-//import io.rokka.client.codegen.api.SourceimagesApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure API key authorization: ApiKeyAuth
-ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
-ApiKeyAuth.setApiKey("YOUR API KEY");
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//ApiKeyAuth.setApiKeyPrefix("Token");
-
-SourceimagesApi apiInstance = new SourceimagesApi();
-String destination = "destination_example"; // String | The destination organization
-String organization = "organization_example"; // String | 
-String hash = "hash_example"; // String | 
-String overwrite = "overwrite_example"; // String | If set to 'F', existing images won't be overwritten.
-try {
-    apiInstance.sourceimagesOrganizationHashCopyPost(destination, organization, hash, overwrite);
-} catch (ApiException e) {
-    System.err.println("Exception when calling SourceimagesApi#sourceimagesOrganizationHashCopyPost");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **destination** | **String**| The destination organization |
- **organization** | **String**|  |
- **hash** | **String**|  |
- **overwrite** | **String**| If set to &#39;F&#39;, existing images won&#39;t be overwritten. | [optional] [enum: ,  F]
-
-### Return type
-
-null (empty response body)
 
 ### Authorization
 
