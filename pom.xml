@@ -5,7 +5,7 @@
     <artifactId>rokka-client-codegen</artifactId>
     <packaging>jar</packaging>
     <name>rokka-client-codegen</name>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <url>https://github.com/swagger-api/swagger-codegen</url>
     <description>Swagger Java</description>
     <scm>

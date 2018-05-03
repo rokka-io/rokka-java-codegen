@@ -35,6 +35,25 @@ public class SourceimagesApiTest {
 
     
     /**
+     * Copy a single source image to another org.
+     *
+     * The metadata is copied as well. After copying, changes to either image metadata are not reflected in the other image metadata.  This is a proxy method for COPY on /sourceimages/{organization}/{hash}. It allows to copy images with a POST request, to work around restrictive firewalls and allows to produce a swagger specification for this operation.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void copySourceImageTest() throws ApiException {
+        String destination = null;
+        String organization = null;
+        String hash = null;
+        String overwrite = null;
+        api.copySourceImage(destination, organization, hash, overwrite);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Upload new source images.
      *
      * The request is form data for the uploaded files and arrays of metadata. Files and metadata are matched based on their order in the request.  Note that this call allows to upload multiple images, but the swagger UI does not support this.
@@ -318,25 +337,6 @@ public class SourceimagesApiTest {
         String organization = null;
         String hash = null;
         SourceImage response = api.restoreSourceImage(organization, hash);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Copy a single source image to another org.
-     *
-     * The metadata is copied as well. After copying, changes to either image metadata are not reflected in the other image metadata.  This is a proxy method for COPY on /sourceimages/{organization}/{hash}. It allows to copy images with a POST request, to work around restrictive firewalls and allows to produce a swagger specification for this operation.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void sourceimagesOrganizationHashCopyPostTest() throws ApiException {
-        String destination = null;
-        String organization = null;
-        String hash = null;
-        String overwrite = null;
-        api.sourceimagesOrganizationHashCopyPost(destination, organization, hash, overwrite);
 
         // TODO: test validations
     }
