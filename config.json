@@ -2,7 +2,7 @@
   "groupId": "io.rokka.client.codegen",
   "apiPackage": "io.rokka.client.codegen.api",
   "modelPackage": "io.rokka.client.codegen.model",
-  "artifactVersion": "0.0.1",
+  "artifactVersion": "0.0.2",
   "hideGenerationTimestamp": true,
   "artifactId": "rokka-client-codegen"
 }
