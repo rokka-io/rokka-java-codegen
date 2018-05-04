@@ -1,0 +1,13 @@
+diff --git b/.travis.yml a/.travis.yml
+index 70cb81a..30e57ae 100644
+--- b/.travis.yml
++++ a/.travis.yml
+@@ -4,7 +4,7 @@
+ language: java
+ jdk:
+   - oraclejdk8
+-  - oraclejdk7
++#  - oraclejdk7
+ before_install:
+   # ensure gradlew has proper permission
+   - chmod a+x ./gradlew
