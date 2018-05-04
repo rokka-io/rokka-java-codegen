@@ -1,6 +1,6 @@
 # AdminApi
 
-All URIs are relative to *https://api.rokka.io/*
+All URIs are relative to *https://api.rokka.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
