@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>rokka_client</groupId>
+    <groupId>io.rokka.client.codegen</groupId>
     <artifactId>rokka-client-codegen</artifactId>
     <packaging>jar</packaging>
     <name>rokka-client-codegen</name>
@@ -9,9 +9,9 @@
     <url>https://github.com/rokka-io/rokka-java-codegen</url>
     <description>Rokka client for Java as maven package</description>
     <scm>
-        <connection>scm:git:git@github.com:swagger-api/swagger-codegen.git</connection>
-        <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
-        <url>https://github.com/swagger-api/swagger-codegen</url>
+        <connection>scm:git:git@github.com/rokka-io/rokka-java-codegen.git</connection>
+        <developerConnection>scm:git:github.com/rokka-io/rokka-java-codegen.git</developerConnection>
+        <url>github.com/rokka-io/rokka-java-codegen</url>
     </scm>
 
     <licenses>
@@ -35,7 +35,7 @@
             <extension>
                 <groupId>io.packagecloud.maven.wagon</groupId>
                 <artifactId>maven-packagecloud-wagon</artifactId>
-                <version>0.0.4</version>
+                <version>0.0.6</version>
             </extension>
         </extensions>
         <plugins>
@@ -170,12 +170,12 @@
     </build>
     <distributionManagement>
         <repository>
-            <id>packagecloud.rokka_repo</id>
-            <url>packagecloud+http://packagecloud.dev:3000/rokka/rokka</url>
+            <id>packagecloud-rokka</id>
+            <url>packagecloud+https://packagecloud.io/rokka/rokka</url>
         </repository>
         <snapshotRepository>
-            <id>packagecloud.rokka_snapshots</id>
-            <url>packagecloud+http://packagecloud.dev:3000/rokka/rokka</url>
+            <id>packagecloud-rokka</id>
+            <url>packagecloud+https://packagecloud.io/rokka/rokka</url>
         </snapshotRepository>
     </distributionManagement>
     <profiles>

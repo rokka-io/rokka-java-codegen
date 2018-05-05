@@ -6,25 +6,7 @@ See the [examples](src/main/java/io/rokka/examples/) directory for some simple r
 
 A thin wrapper package for using this to make some things easier would be welcome. We're [happy to help](https://rokka.io/en/contact/).
 
-## Requirements
-
-Building the API client library requires [Maven](https://maven.apache.org/) to be installed.
-
 ## Installation
-
-To install the API client library to your local Maven repository, simply execute:
-
-```shell
-mvn install
-```
-
-To deploy it to a remote Maven repository instead, configure the settings of the repository and execute:
-
-```shell
-mvn deploy
-```
-
-Refer to the [official documentation](https://maven.apache.org/plugins/maven-deploy-plugin/usage.html) for more information.
 
 ### Maven users
 
@@ -35,13 +17,41 @@ Add this dependency to your project's POM:
     <groupId>io.rokka.client.codegen</groupId>
     <artifactId>rokka-client-codegen</artifactId>
     <version>0.0.3</version>
-    <scope>compile</scope>
 </dependency>
+```
+
+and this to the dependencyManagement section
+
+```xml
+<repositories>
+  <repository>
+    <id>rokka-rokka</id>
+    <url>https://packagecloud.io/rokka/rokka/maven2</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>true</enabled>
+    </snapshots>
+  </repository>
+</repositories>
+```
+
+### Local compilation from git checkout
+
+Building the API client library requires [Maven](https://maven.apache.org/) to be installed.
+
+To install the API client library to your local Maven repository, simply execute:
+
+```shell
+mvn install
 ```
 
 ### Gradle users
 
 Add this dependency to your project's build file:
+
+()FIXME: how to load from the remote repository)
 
 ```groovy
 compile "io.rokka.client.codegen:rokka-client-codegen:0.0.3"
@@ -63,7 +73,7 @@ Then manually install the following JARs:
 Please follow the [installation](#installation) instruction and see the [examples](src/main/java/io/rokka/examples/)
 directory.
 
-Then adjust io.rokka.examples.Config with your API Key and default organization, run `mvn install` and do
+If you checked out the git repo,  adjust io.rokka.examples.Config with your API Key and default organization, run `mvn install` and do
 
 ```
 java -cp target/lib/*:target/rokka-client-codegen-0.0.3.jar io.rokka.examples.ListStacks
