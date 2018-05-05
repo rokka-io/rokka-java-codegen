@@ -16,7 +16,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>io.rokka.client.codegen</groupId>
     <artifactId>rokka-client-codegen</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.6</version>
 </dependency>
 ```
 
@@ -54,7 +54,7 @@ Add this dependency to your project's build file:
 ()FIXME: how to load from the remote repository)
 
 ```groovy
-compile "io.rokka.client.codegen:rokka-client-codegen:0.0.3"
+compile "io.rokka.client.codegen:rokka-client-codegen:0.0.6"
 ```
 
 ### Others
@@ -65,7 +65,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/rokka-client-codegen-0.0.3.jar
+* target/rokka-client-codegen-0.0.6.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -76,7 +76,7 @@ directory.
 If you checked out the git repo,  adjust io.rokka.examples.Config with your API Key and default organization, run `mvn install` and do
 
 ```
-java -cp target/lib/*:target/rokka-client-codegen-0.0.3.jar io.rokka.examples.ListStacks
+java -cp target/lib/*:target/rokka-client-codegen-0.0.6.jar io.rokka.examples.ListStacks
 ```
 
 (and replace `ListStacks` with `CreateStack` or `UploadImage` for the other examples)
