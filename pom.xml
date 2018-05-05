@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.rokka.client.codegen</groupId>
+    <groupId>rokka_client</groupId>
     <artifactId>rokka-client-codegen</artifactId>
     <packaging>jar</packaging>
     <name>rokka-client-codegen</name>
     <version>0.0.3</version>
-    <url>https://github.com/swagger-api/swagger-codegen</url>
-    <description>Swagger Java</description>
+    <url>https://github.com/rokka-io/rokka-java-codegen</url>
+    <description>Rokka client for Java as maven package</description>
     <scm>
         <connection>scm:git:git@github.com:swagger-api/swagger-codegen.git</connection>
         <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
@@ -16,22 +16,28 @@
 
     <licenses>
         <license>
-            <name>Unlicense</name>
-            <url>http://unlicense.org</url>
+            <name>MIT</name>
             <distribution>repo</distribution>
         </license>
     </licenses>
 
     <developers>
         <developer>
-            <name>Swagger</name>
-            <email>apiteam@swagger.io</email>
-            <organization>Swagger</organization>
-            <organizationUrl>http://swagger.io</organizationUrl>
+            <name>Rokka</name>
+            <email>rokka@rokka.io</email>
+            <organization>rokka</organization>
+            <organizationUrl>https://rokka.io</organizationUrl>
         </developer>
     </developers>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>io.packagecloud.maven.wagon</groupId>
+                <artifactId>maven-packagecloud-wagon</artifactId>
+                <version>0.0.4</version>
+            </extension>
+        </extensions>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -162,7 +168,16 @@
             </plugin>
         </plugins>
     </build>
-
+    <distributionManagement>
+        <repository>
+            <id>packagecloud.rokka_repo</id>
+            <url>packagecloud+http://packagecloud.dev:3000/rokka/rokka</url>
+        </repository>
+        <snapshotRepository>
+            <id>packagecloud.rokka_snapshots</id>
+            <url>packagecloud+http://packagecloud.dev:3000/rokka/rokka</url>
+        </snapshotRepository>
+    </distributionManagement>
     <profiles>
         <profile>
             <id>sign-artifacts</id>
