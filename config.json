@@ -3,6 +3,6 @@
   "artifactId": "rokka-client-codegen",
   "apiPackage": "io.rokka.client.codegen.api",
   "modelPackage": "io.rokka.client.codegen.model",
-  "artifactVersion": "0.0.6",
+  "artifactVersion": "0.1.0",
   "hideGenerationTimestamp": true
 }
